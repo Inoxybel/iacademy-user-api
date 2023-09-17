@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "UeLESj4Uw3u7AiBSR9VEYY0mL/0EgFPlUvhunHUXVlFCBRCwhATO6a2NCEUdJ969evzhA9YAM9ybwYfyB5C3MA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thdev\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
