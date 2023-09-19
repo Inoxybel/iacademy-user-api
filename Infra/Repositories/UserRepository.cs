@@ -1,4 +1,5 @@
-﻿using Domain.DTO;
+﻿using Domain.Constants;
+using Domain.DTO;
 using Domain.Entities;
 using Domain.Interfaces.Infra;
 using MongoDB.Driver;
@@ -32,7 +33,7 @@ public class UserRepository : IUserRepository
                 Name = user.Name,
                 Email = user.Email,
                 PasswordHash = hashedPassword,
-                CompanyRef = user.CompanyRef
+                CompanyRef = ValidateCompanyRef(user.CompanyRef)
             };
 
             await _dbContext.User.InsertOneAsync(newUser, null, cancellationToken);
@@ -62,7 +63,7 @@ public class UserRepository : IUserRepository
             var filterUpdate = Builders<User>.Update
                 .Set(u => u.Name, user.Name)
                 .Set(u => u.Email, user.Email)
-                .Set(u => u.CompanyRef, user.CompanyRef);
+                .Set(u => u.CompanyRef, ValidateCompanyRef(user.CompanyRef));
 
             var result = await _dbContext.User.UpdateOneAsync(filterDefinition, filterUpdate, null, cancellationToken);
 
@@ -138,5 +139,13 @@ public class UserRepository : IUserRepository
         {
             return false;
         }
+    }
+
+    private string ValidateCompanyRef(string companyRef)
+    {
+        if (string.IsNullOrEmpty(companyRef))
+            return Constants.MasterCNPJ;
+
+        return companyRef;
     }
 }
