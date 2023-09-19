@@ -7,10 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["IAcademyUserAPI.csproj", "."]
-RUN dotnet restore "./IAcademyUserAPI.csproj"
+COPY ["Application/IAcademyUserAPI.csproj", "Application/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["Infra/Infra.csproj", "Infra/"]
+COPY ["Services/Services.csproj", "Services/"]
+
+RUN dotnet restore "Application/IAcademyUserAPI.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/Application"
 RUN dotnet build "IAcademyUserAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish

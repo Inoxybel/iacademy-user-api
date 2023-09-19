@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fp7M0QHUj9fddTLjpQ85+XgBLvvWkNEUqZxnGDLaFop4yFlVYbHkpRhzQGFknvtSrN5TmtLvh9YXlQEEfJbk1w==",
+  "dgSpecHash": "5i0D+buTEwca9DPipyDy7QYSfKd6jqNIXMnNVbqA48ztmzFQgnUk8PlUwpmBqGlK5ADybgCSo5LZmljQa49zag==",
   "success": true,
   "projectFilePath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Application\\IAcademyUserAPI.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,7 @@
     "C:\\Users\\thdev\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\thdev\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\thdev\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\thdev\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
     "C:\\Users\\thdev\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\thdev\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\thdev\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

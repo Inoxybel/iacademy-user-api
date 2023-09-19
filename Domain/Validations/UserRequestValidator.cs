@@ -24,8 +24,8 @@ public class UserRequestValidator : AbstractValidator<UserRequest>
            .Matches(@"[\W_]+").WithMessage("The password must contain at least one special character.");
 
         RuleFor(x => x.CompanyRef)
-            .NotEmpty().WithMessage("CompanyRef field is required.")
-            .Must(BeAValidCNPJ).WithMessage("The CompanyRef field is not a valid CNPJ.");
+            .Must(BeAValidCNPJ).WithMessage("The CompanyRef field is not a valid CNPJ.")
+            .When(x => !string.IsNullOrWhiteSpace(x.CompanyRef));
     }
 
     private bool BeAValidCNPJ(string cnpj)

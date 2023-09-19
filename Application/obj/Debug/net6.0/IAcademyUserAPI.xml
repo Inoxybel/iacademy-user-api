@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IAcademyUserAPI</name>
+    </assembly>
+    <members>
+        <member name="M:IAcademy_User_API.Controllers.v1.UserController.Get(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Recuperar dados de um usuário pelo Id
+            </summary>
+            <param name="userId">Id em forma de GUID (36 caracteres)</param>
+            <param name="cancellationToken">Token de cancelamento</param>
+            <returns>Objeto contendo:
+            Id - Identificação em forma de GUID (36 caracteres)
+            Name - Nome do usuário (mínimo de 3 caracteres)
+            Email - Email do usuário
+            CompanyRef - CNPJ da empresa que o usuário está agregado</returns>
+        </member>
+        <member name="M:IAcademy_User_API.Controllers.v1.UserController.Save(Domain.DTO.UserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cadastrar um novo usuário
+            </summary>
+            <param name="userRequest">Objeto contendo os dados a serem cadastrados. PS: CompanyRef é opcional</param>
+            <param name="cancellationToken">Token de cancelamento</param>
+            <returns>Id do usuário cadastrado em forma de GUID (36 caracteres)</returns>
+        </member>
+        <member name="M:IAcademy_User_API.Controllers.v1.UserController.Update(System.String,Domain.DTO.UserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Atualizar um usuário já cadastrado
+            </summary>
+            <param name="userId">Identificação do usuário (GUID de 36 caracteres)</param>
+            <param name="userRequest">Objeto contendo os novos dados a serem salvos. PS: CompanyRef é opcional.</param>
+            <param name="cancellationToken">Token de cancelamento</param>
+            <returns></returns>
+        </member>
+        <member name="M:IAcademy_User_API.Controllers.v1.UserController.Login(Domain.DTO.LoginRequest,System.Threading.CancellationToken)">
+            <summary>
+            Obter acesso à plataforma
+            </summary>
+            <param name="loginRequest">Objeto contendo credeciais de acesso</param>
+            <param name="cancellationToken">Token de cancelamento</param>
+            <returns>Objeto contendo o Token que dá acesso aos demais endpoints</returns>
+        </member>
+        <member name="M:IAcademy_User_API.Controllers.v1.UserController.UpdatePassword(System.String,Domain.DTO.UserUpdatePasswordRequest,System.Threading.CancellationToken)">
+            <summary>
+            Atualizar senha do usuário
+            </summary>
+            <param name="userId">Idenificação do usuário (GUID de 36 caracteres)</param>
+            <param name="updatePasswordRequest">Objeto contendo informações das credenciais</param>
+            <param name="cancellationToken">Token de cancelamento</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
