@@ -91,7 +91,6 @@ namespace IAcademy_User_API
 
         public static void ConfigureApp(WebApplication app, IConfiguration configuration)
         {
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -102,6 +101,12 @@ namespace IAcademy_User_API
                 c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
 
                 c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+            });
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
+                await next.Invoke();
             });
 
             app.UseAuthorization();
