@@ -1183,8 +1183,14 @@
         }
       },
       "xunit.runner.visualstudio/2.4.3": {},
+      "CrossCutting/1.0.0": {
+        "runtime": {
+          "CrossCutting.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "dependencies": {
+          "CrossCutting": "1.0.0",
           "FluentValidation": "11.7.1"
         },
         "runtime": {
@@ -1193,6 +1199,7 @@
       },
       "Services/1.0.0": {
         "dependencies": {
+          "CrossCutting": "1.0.0",
           "Domain": "1.0.0"
         },
         "runtime": {
@@ -1899,6 +1906,11 @@
       "sha512": "sha512-kZZSmOmKA8OBlAJaquPXnJJLM9RwQ27H7BMVqfMLUcTi9xHinWGJiWksa3D4NEtz0wZ/nxd2mogObvBgJKCRhQ==",
       "path": "xunit.runner.visualstudio/2.4.3",
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    },
+    "CrossCutting/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Domain/1.0.0": {
       "type": "project",

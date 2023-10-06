@@ -13,3 +13,5 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Services\obj\
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Services\obj\Release\net6.0\refint\Services.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Services\obj\Release\net6.0\Services.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Services\obj\Release\net6.0\ref\Services.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Services\bin\Release\net6.0\CrossCutting.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Services\bin\Release\net6.0\CrossCutting.pdb

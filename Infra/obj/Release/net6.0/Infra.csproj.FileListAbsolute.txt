@@ -13,3 +13,5 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Infra\obj\Rel
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Infra\obj\Release\net6.0\refint\Infra.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Infra\obj\Release\net6.0\Infra.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Infra\obj\Release\net6.0\ref\Infra.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Infra\bin\Release\net6.0\CrossCutting.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Infra\bin\Release\net6.0\CrossCutting.pdb

@@ -44,6 +44,7 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\o
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\MongoDB.Libmongocrypt.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\SharpCompress.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Snappier.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -53,9 +54,12 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\o
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\runtimes\linux\native\libmongocrypt.so
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\runtimes\win\native\mongocrypt.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\CrossCutting.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Domain.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Infra.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Services.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Infra.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Services.pdb
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\CrossCutting.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\Domain.pdb
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Docker\publish\IAcademyUserAPI.xml

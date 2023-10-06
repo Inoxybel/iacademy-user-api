@@ -15,10 +15,21 @@
           }
         }
       },
+      "CrossCutting/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CrossCutting.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CrossCutting.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "CrossCutting": "1.0.0",
           "FluentValidation": "11.7.1"
         },
         "compile": {
@@ -54,6 +65,11 @@
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
+    "CrossCutting/1.0.0": {
+      "type": "project",
+      "path": "../CrossCutting/CrossCutting.csproj",
+      "msbuildProject": "../CrossCutting/CrossCutting.csproj"
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -62,6 +78,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "CrossCutting >= 1.0.0",
       "Domain >= 1.0.0"
     ]
   },
@@ -97,6 +114,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\CrossCutting\\CrossCutting.csproj": {
+              "projectPath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\CrossCutting\\CrossCutting.csproj"
+            },
             "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Domain\\Domain.csproj"
             }

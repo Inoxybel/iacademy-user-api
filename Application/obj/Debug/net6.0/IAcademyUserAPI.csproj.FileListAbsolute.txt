@@ -88,6 +88,7 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\b
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\IAcademyUserAPI.runtimeconfig.json
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\IAcademyUserAPI.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\IAcademyUserAPI.pdb
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\IAcademyUserAPI.xml
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\HealthChecks.MongoDb.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\AWSSDK.Core.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
@@ -126,6 +127,7 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\b
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\SharpCompress.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Snappier.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -135,11 +137,13 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\b
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\CrossCutting.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Domain.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Infra.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Services.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Infra.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Services.pdb
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\CrossCutting.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Domain.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.csproj.AssemblyReference.cache
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.GeneratedMSBuildEditorConfig.editorconfig
@@ -159,9 +163,7 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\o
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.csproj.CopyComplete
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.dll
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\refint\IAcademyUserAPI.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.xml
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.genruntimeconfig.cache
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\ref\IAcademyUserAPI.dll
-C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
-C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Debug\net6.0\IAcademyUserAPI.xml
-C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Debug\net6.0\IAcademyUserAPI.xml

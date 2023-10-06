@@ -1,6 +1,8 @@
-﻿using Domain.DTO;
+﻿using CrossCutting.Helpers;
+using Domain.DTO;
 using Domain.Entities;
 using Domain.Interfaces.Infra;
+using Domain.Interfaces.Services;
 using FluentAssertions;
 using Moq;
 using Services;
@@ -11,12 +13,17 @@ namespace Tests.Unit.Services;
 public class UserServiceTests
 {
     private Mock<IUserRepository> _userRepositoryMock;
+    private Mock<ICompanyService> _companyServiceMock;
     private UserService _userService;
 
     public UserServiceTests()
     {
-        _userRepositoryMock = new Mock<IUserRepository>();
-        _userService = new UserService(_userRepositoryMock.Object);
+        _userRepositoryMock = new();
+        _companyServiceMock = new();
+        _userService = new UserService(
+            _userRepositoryMock.Object,
+            _companyServiceMock.Object
+        );
     }
 
     [Fact]
@@ -41,7 +48,7 @@ public class UserServiceTests
             CompanyRef = "ABC" 
         };
 
-        _userRepositoryMock.Setup(x => x.Get(userId, It.IsAny<CancellationToken>()))
+        _userRepositoryMock.Setup(x => x.GetById(userId, It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
         var result = await _userService.Get(userId);
@@ -62,8 +69,7 @@ public class UserServiceTests
         {
             Name = "Test User",
             Email = "test@example.com",
-            Password = "P@ssw0rd",
-            CompanyRef = "ABC"
+            Password = "P@ssw0rd"
         };
 
         var expectedUserId = "12345";
@@ -73,7 +79,7 @@ public class UserServiceTests
 
         var result = await _userService.Save(userRequest);
 
-        result.Should().Be(expectedUserId);
+        result.Data.Should().Be(expectedUserId);
     }
 
     [Theory]
@@ -81,22 +87,32 @@ public class UserServiceTests
     [InlineData(false)]
     public async Task Update_SHOULD_ReturnExpectedResult_WHEN_UpdateIsCalled(bool updateResult)
     {
-        string userId = "12345";
+        var user = new User()
+        {
+            CompanyRef = "iacademy"
+        };
 
-        var userRequest = new UserRequest
+        var userRequest = new UserUpdateRequest
         {
             Name = "Test User",
             Email = "test@example.com",
             Password = "P@ssw0rd",
-            CompanyRef = "ABC"
+            CompanyRef = user.CompanyRef
         };
 
-        _userRepositoryMock.Setup(x => x.Update(userId, userRequest, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(updateResult);
+        _userRepositoryMock.Setup(x => x.GetById(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
 
-        var result = await _userService.Update(userId, userRequest);
+        if(updateResult)
+            _userRepositoryMock.Setup(x => x.Update(user, userRequest, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(ServiceResult<bool>.MakeSuccessResult(updateResult));
+        else
+            _userRepositoryMock.Setup(x => x.Update(user, userRequest, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(ServiceResult<bool>.MakeErrorResult("Error"));
 
-        result.Should().Be(updateResult);
+        var result = await _userService.Update("userId", userRequest);
+
+        result.Data.Should().Be(updateResult);
     }
 
     [Fact]
@@ -108,12 +124,16 @@ public class UserServiceTests
             Password = "P@ssw0rd"
         };
 
-        var expectedUserResponse = new UserResponse
+        var expectedUserResponse = new ServiceResult<UserResponse>
         {
-            Id = "12345",
-            Name = "Test User",
-            Email = "test@example.com",
-            CompanyRef = "ABC"
+            Success = true,
+            Data = new()
+            {
+                Id = "12345",
+                Name = "Test User",
+                Email = "test@example.com",
+                CompanyRef = "ABC"
+            }
         };
 
         _userRepositoryMock.Setup(x => x.ValidatePassword(loginRequest, It.IsAny<CancellationToken>()))
@@ -129,7 +149,7 @@ public class UserServiceTests
     [InlineData(false)]
     public async Task UpdatePassword_SHOULD_ReturnExpectedResult_WHEN_UpdateIsCalled(bool updateResult)
     {
-        string userId = "12345";
+        var userId = "userId";
 
         var userUpdatePasswordRequest = new UserUpdatePasswordRequest 
         { 
@@ -139,13 +159,147 @@ public class UserServiceTests
             ConfirmPassword = "N3wP@ssw0rd"
         };
 
-        _userRepositoryMock.Setup(x => x.UpdatePassword(userId, userUpdatePasswordRequest, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(updateResult);
+        if (updateResult)
+            _userRepositoryMock.Setup(x => x.UpdatePassword(userId, userUpdatePasswordRequest, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(ServiceResult<bool>.MakeSuccessResult(updateResult));
+        else
+            _userRepositoryMock.Setup(x => x.UpdatePassword(userId, userUpdatePasswordRequest, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(ServiceResult<bool>.MakeErrorResult("Error"));
 
         var result = await _userService.UpdatePassword(userId, userUpdatePasswordRequest);
 
-        result.Should().Be(updateResult);
+        result.Data.Should().Be(updateResult);
     }
 
+    [Fact]
+    public async Task Save_SHOULD_ReturnError_WHEN_CompanyRefIsInvalidCnpj()
+    {
+        var userRequest = new UserRequest
+        {
+            Name = "Test User",
+            Email = "test@example.com",
+            Password = "P@ssw0rd",
+            CompanyRef = "InvalidCnpj"
+        };
+
+        var result = await _userService.Save(userRequest);
+
+        result.Success.Should().BeFalse();
+        result.ErrorMessage.Should().Be("Invalid Cnpj (CompanyRef).");
+    }
+
+    [Fact]
+    public async Task Save_SHOULD_ReturnError_WHEN_CompanyIsNotFound()
+    {
+        var userRequest = new UserRequest
+        {
+            CompanyRef = "27104771000185"
+        };
+
+        var result = await _userService.Save(userRequest);
+
+        result.Success.Should().BeFalse();
+        result.ErrorMessage.Should().Be("Company not found.");
+    }
+
+    [Fact]
+    public async Task Save_SHOULD_ReturnError_WHEN_UserIsNotIntegratedToCompany()
+    {
+        var userRequest = new UserRequest
+        {
+            Cpf = "11111111111",
+            CompanyRef = "27104771000185"
+        };
+
+        var company = new Company
+        {
+            Cnpj = userRequest.CompanyRef,
+            Groups = new()
+            {
+                new CompanyGroup
+                {
+                    UsersDocument = new()
+                }
+            }
+        };
+
+        _companyServiceMock.Setup(x => x.GetByRef(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                           .ReturnsAsync(company);
+
+        var result = await _userService.Save(userRequest);
+
+        result.Success.Should().BeFalse();
+        result.ErrorMessage.Should().Be("Registration failed. Please contact your company.");
+    }
+
+    [Fact]
+    public async Task Update_SHOULD_ReturnError_WHEN_UserIsNotFound()
+    {
+        var userRequest = new UserUpdateRequest();
+
+        var result = await _userService.Update("userId", userRequest);
+
+        result.Success.Should().BeFalse();
+        result.ErrorMessage.Should().Be("User not found.");
+    }
+
+    [Fact]
+    public async Task Update_SHOULD_ReturnError_WHEN_RequestCompanyIsNotFound()
+    {
+        var userRequest = new UserUpdateRequest
+        {
+            CompanyRef = "NewCompanyRef"
+        };
+        var existingUser = new User
+        {
+            CompanyRef = "ExistingCompanyRef"
+        };
+
+        _userRepositoryMock.Setup(x => x.GetById(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                           .ReturnsAsync(existingUser);
+
+        var result = await _userService.Update("userId", userRequest);
+
+        result.Success.Should().BeFalse();
+        result.ErrorMessage.Should().Be("Company not found.");
+    }
+
+    [Fact]
+    public async Task Update_SHOULD_ReturnError_WHEN_UserIsNotIntegratedToRequestCompany()
+    {
+        var userRequest = new UserUpdateRequest
+        {
+            Cpf = "11111111111",
+            CompanyRef = "67601037000146"
+        };
+
+        var existingUser = new User
+        {
+            CompanyRef = "27104771000185"
+        };
+
+        var company = new Company
+        {
+            Cnpj = userRequest.CompanyRef,
+            Groups = new()
+            {
+                new CompanyGroup
+                {
+                    UsersDocument = new()
+                }
+            }
+        };
+
+        _userRepositoryMock.Setup(x => x.GetById(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                           .ReturnsAsync(existingUser);
+
+        _companyServiceMock.Setup(x => x.GetByRef(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                           .ReturnsAsync(company);
+
+        var result = await _userService.Update("userId", userRequest);
+
+        result.Success.Should().BeFalse();
+        result.ErrorMessage.Should().Be("Registration failed. Please contact your company.");
+    }
 }
 

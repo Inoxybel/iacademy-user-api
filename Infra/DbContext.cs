@@ -8,6 +8,7 @@ namespace Infra;
 public class DbContext
 {
     public IMongoCollection<User> User { get; }
+    public IMongoCollection<Company> Company { get; }
 
     protected DbContext() { }
 
@@ -18,5 +19,6 @@ public class DbContext
         var database = client.GetDatabase(databaseInstanceOptions.Value.Name);
 
         User = database.GetCollection<User>(nameof(User));
+        Company = database.GetCollection<Company>(nameof(Company));
     }
 }

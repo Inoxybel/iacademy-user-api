@@ -64,8 +64,8 @@ public static class AppConfiguration
     {
         services.Configure<DatabaseInstanceOptions>(x =>
         {
-            x.Name = configuration.GetValue<string>($"IAcademy:UserManager:Mongo:{DatabaseInstanceOptions.DatabaseNameConfigKey}");
-            x.ConnectionString = configuration.GetValue<string>($"IAcademy:UserManager:Mongo:{DatabaseInstanceOptions.ConnectionStringConfigKey}");
+            x.Name = configuration.GetValue<string>($"UserManager:Mongo:{DatabaseInstanceOptions.DatabaseNameConfigKey}");
+            x.ConnectionString = configuration.GetValue<string>($"UserManager:Mongo:{DatabaseInstanceOptions.ConnectionStringConfigKey}");
         });
 
         ConfigureJWT(services, configuration);
@@ -76,6 +76,7 @@ public static class AppConfiguration
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ICompanyRepository, CompanyRepository>();
 
         services.AddSingleton<DbContext>();
         return services;
@@ -83,7 +84,7 @@ public static class AppConfiguration
 
     private static void ConfigureJWT(IServiceCollection services, IConfiguration configuration)
     {
-        var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("IAcademy:JwtSettings:SecretKey"));
+        var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("JwtSettings:SecretKey"));
 
         services.AddAuthentication(x =>
         {
