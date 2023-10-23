@@ -1,4 +1,7 @@
+using CrossCutting.Enums;
+using Domain.Constants;
 using Domain.DTO;
+using Domain.Entities;
 using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,16 +20,19 @@ namespace IAcademyUserAPI.Controllers.v1
     {
         private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
+        private readonly IActivationCodeService _activationCodeService;
         private readonly IConfiguration _configuration;
 
         public UserController(
             ILogger<UserController> logger,
             IUserService userService,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IActivationCodeService activationCodeService)
         {
             _logger = logger;
             _userService = userService;
             _configuration = configuration;
+            _activationCodeService = activationCodeService;
         }
 
         /// <summary>
@@ -74,7 +80,7 @@ namespace IAcademyUserAPI.Controllers.v1
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> Save([FromBody] UserRequest userRequest, CancellationToken cancellationToken = default)
         {
-            /*try
+            try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
@@ -90,8 +96,7 @@ namespace IAcademyUserAPI.Controllers.v1
             {
                 _logger.LogError(ex, "Error saving user");
                 return BadRequest("Error saving user");
-            }*/
-            return BadRequest("Não foi possível cadastrar");
+            }
         }
 
         /// <summary>
@@ -114,6 +119,11 @@ namespace IAcademyUserAPI.Controllers.v1
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
+                var id = User.FindFirst("OwnerId")?.Value;
+
+                if (userId != id && id != Constants.MasterCnpj)
+                    return BadRequest("Invalid Token");
+
                 var result = await _userService.Update(userId, userRequest, cancellationToken);
 
                 return result.Success ? NoContent() : BadRequest(result.ErrorMessage);
@@ -122,6 +132,49 @@ namespace IAcademyUserAPI.Controllers.v1
             {
                 _logger.LogError(ex, "Error updating user with ID: {UserId}", userId);
                 return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Endpoint para ativar um usuario recem cadastrado
+        /// </summary>
+        /// <param name="userId">Identificacao do usuario (GUID de 36 caracteres)</param>
+        /// <param name="code">Codigo de 6 digitos numericos</param>
+        /// <param name="cancellationToken">Token de cancelamento</param>
+        /// <returns>Action Result</returns>
+        [HttpPost("{userId}/active/{code}")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ActiveUser([FromRoute] string userId, [FromRoute] string code, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var user = await _userService.Get(userId, cancellationToken);
+
+                if (string.IsNullOrEmpty(user.Id))
+                    return BadRequest("User not found");
+
+                if (user.IsActivated)
+                    return Ok("User is already active");
+
+                var activationCode = await _activationCodeService.Get(userId, cancellationToken);
+
+                if (string.IsNullOrEmpty(activationCode.Id))
+                    return BadRequest("Code not found");
+
+                if (code != activationCode.Code)
+                    return BadRequest("Invalid code for this user");
+
+                var activationUserResponse = await _userService.ActivateUser(userId, activationCode.Id, cancellationToken);
+
+                if (!activationUserResponse)
+                    return BadRequest("Error to validate user");
+
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest($"An error occoured: {ex}");
             }
         }
 
@@ -147,6 +200,9 @@ namespace IAcademyUserAPI.Controllers.v1
                 if (string.IsNullOrEmpty(validateResult.Data?.Id))
                     return Unauthorized("Invalid credentials");
 
+                if(!validateResult.Data.IsActivated)
+                    return Unauthorized("User is not active");
+
                 var expirationTimeInMinutes = int.Parse(_configuration.GetValue<string>("JwtSettings:ExpirationTimeInMinutes"));
                 var secretKey = _configuration.GetValue<string>("JwtSettings:SecretKey");
                 var key = Encoding.ASCII.GetBytes(secretKey);
@@ -157,7 +213,8 @@ namespace IAcademyUserAPI.Controllers.v1
                     {
                         new Claim("OwnerId", validateResult.Data.Id),
                         new Claim("Document", validateResult.Data.Cpf),
-                        new Claim("CompanyRef", validateResult.Data.CompanyRef)
+                        new Claim("CompanyRef", validateResult.Data.CompanyRef),
+                        new Claim("TextGenres", "[" + string.Join(",", validateResult.Data.GenrePreferences.Select(g => g.Genre.ToString())) + "]")
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(expirationTimeInMinutes),
                     SigningCredentials = new SigningCredentials(
@@ -211,7 +268,7 @@ namespace IAcademyUserAPI.Controllers.v1
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error updating password for user with ID: {UserId}", userId);
+                _logger.LogError(ex, $"Error updating password for user with ID: {userId}");
                 return BadRequest();
             }
         }

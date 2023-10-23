@@ -1,8 +1,10 @@
 ﻿using CrossCutting.Helpers;
 using Domain.Constants;
 using Domain.DTO;
+using Domain.Entities;
 using Domain.Interfaces.Infra;
 using Domain.Interfaces.Services;
+using System;
 
 namespace Services;
 
@@ -10,13 +12,16 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly ICompanyService _companyService;
+    private readonly IActivationCodeService _activationCodeService;
 
     public UserService(
         IUserRepository userRepository,
-        ICompanyService companyService)
+        ICompanyService companyService,
+        IActivationCodeService activationCodeService)
     {
         _userRepository = userRepository;
         _companyService = companyService;
+        _activationCodeService = activationCodeService;
     }
 
     public async Task<UserResponse> Get(string userId, CancellationToken cancellationToken = default)
@@ -55,6 +60,8 @@ public class UserService : IUserService
         {
             userId = await _userRepository.Save(user, cancellationToken);
 
+            await MakeActivationCode(userId, cancellationToken);
+
             return MakeReturn(userId);
         }
             
@@ -70,7 +77,23 @@ public class UserService : IUserService
 
         userId = await _userRepository.Save(user, cancellationToken);
 
+        await MakeActivationCode(userId, cancellationToken);
+
         return MakeReturn(userId);
+    }
+
+    private async Task MakeActivationCode(string userId, CancellationToken cancellationToken)
+    {
+        var random = new Random();
+
+        var activationCode = new ActivationCode()
+        {
+            Id = Guid.NewGuid().ToString(),
+            UserId = userId,
+            Code = random.Next(100000, 1000000).ToString()
+        };
+
+        _ = await _activationCodeService.Save(activationCode, cancellationToken);
     }
 
     public async Task<ServiceResult<bool>> Update(string userId, UserUpdateRequest request, CancellationToken cancellationToken = default)
@@ -88,7 +111,7 @@ public class UserService : IUserService
         if (company is null)
             return ServiceResult<bool>.MakeErrorResult("Company not found.");
 
-        var userIsIntegrated = company.ContainsUserDocument(request.Cpf);
+        var userIsIntegrated = company.ContainsUserDocument(userRecovered.Cpf);
 
         if (!userIsIntegrated)
             return ServiceResult<bool>.MakeErrorResult("Registration failed. Please contact your company.");
@@ -96,7 +119,24 @@ public class UserService : IUserService
         return await _userRepository.Update(userRecovered, request, cancellationToken);
     }
 
-    public async Task<ServiceResult<UserResponse>> ValidatePassword(LoginRequest sendedInfo, CancellationToken cancellationToken = default)
+    public async Task<bool> ActivateUser(string userId, string activationCodeId, CancellationToken cancellationToken = default)
+    {
+        var userRecovered = await _userRepository.GetById(userId, cancellationToken);
+
+        if (userRecovered is null)
+            return false;
+
+        userRecovered.IsActivated = true;
+
+        var inactivateCodeResult = await _activationCodeService.Update(activationCodeId, cancellationToken);
+
+        if (!inactivateCodeResult)
+            return false;
+
+        return _userRepository.Update(userRecovered, cancellationToken).Result.Success;
+    }
+
+    public async Task<ServiceResult<UserWithPreferencesResponse>> ValidatePassword(LoginRequest sendedInfo, CancellationToken cancellationToken = default)
     {
         return await _userRepository.ValidatePassword(sendedInfo, cancellationToken);
     }

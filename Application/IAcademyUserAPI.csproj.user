@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>IAcademy_User_API</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\Properties\PublishProfiles\IAcademyUserAPI.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\Properties\PublishProfiles\IAcademyAPIRegistry.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

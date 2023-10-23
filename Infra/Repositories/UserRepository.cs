@@ -34,7 +34,9 @@ public class UserRepository : IUserRepository
                 Id = Guid.NewGuid().ToString(),
                 Name = user.Name,
                 Email = user.Email,
+                CellphoneNumberWithDDD = user.CellphoneNumberWithDDD,
                 Cpf = user.Cpf,
+                IsActivated = false,
                 PasswordHash = hashedPassword,
                 CompanyRef = user.CompanyRef
             };
@@ -76,7 +78,48 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<ServiceResult<UserResponse>> ValidatePassword(LoginRequest sendedInfo, CancellationToken cancellationToken = default)
+    public async Task<ServiceResult<bool>> Update(User modifiedUser, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var filterDefinition = Builders<User>.Filter.Eq(u => u.Id, modifiedUser.Id);
+
+            var updateDefinitions = new List<UpdateDefinition<User>>();
+
+            if (modifiedUser.Name != null)
+                updateDefinitions.Add(Builders<User>.Update.Set(u => u.Name, modifiedUser.Name));
+
+            if (modifiedUser.Email != null)
+                updateDefinitions.Add(Builders<User>.Update.Set(u => u.Email, modifiedUser.Email));
+
+            if (modifiedUser.CompanyRef != null)
+                updateDefinitions.Add(Builders<User>.Update.Set(u => u.CompanyRef, modifiedUser.CompanyRef));
+
+            if (modifiedUser.IsActivated != null)
+                updateDefinitions.Add(Builders<User>.Update.Set(u => u.IsActivated, true));
+
+            if (modifiedUser.GenrePreferences != null)
+                updateDefinitions.Add(Builders<User>.Update.Set(u => u.GenrePreferences, modifiedUser.GenrePreferences));
+
+            if (!updateDefinitions.Any())
+                return ServiceResult<bool>.MakeErrorResult("No fields to update.");
+
+            var combinedUpdate = Builders<User>.Update.Combine(updateDefinitions);
+
+            var result = await _dbContext.User.UpdateOneAsync(filterDefinition, combinedUpdate, null, cancellationToken);
+
+            if (result.ModifiedCount > 0)
+                return ServiceResult<bool>.MakeSuccessResult(true);
+
+            return ServiceResult<bool>.MakeErrorResult("Error: user not updated.");
+        }
+        catch
+        {
+            return ServiceResult<bool>.MakeErrorResult("Error: user not updated.");
+        }
+    }
+
+    public async Task<ServiceResult<UserWithPreferencesResponse>> ValidatePassword(LoginRequest sendedInfo, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -87,26 +130,28 @@ public class UserRepository : IUserRepository
             {
                 if(BCrypt.Net.BCrypt.Verify(sendedInfo.Password, user.PasswordHash))
                 {
-                    var userResponse = new UserResponse()
+                    var userResponse = new UserWithPreferencesResponse()
                     {
                         Id = user.Id,
                         Name = user.Name,
                         Cpf = user.Cpf,
                         Email = user.Email,
-                        CompanyRef = user.CompanyRef
+                        IsActivated = user.IsActivated,
+                        CompanyRef = user.CompanyRef,
+                        GenrePreferences = user.GenrePreferences
                     };
 
-                    return ServiceResult<UserResponse>.MakeSuccessResult(userResponse);
+                    return ServiceResult<UserWithPreferencesResponse>.MakeSuccessResult(userResponse);
                 }
 
-                return ServiceResult<UserResponse>.MakeErrorResult("Invalid Credentials");
+                return ServiceResult<UserWithPreferencesResponse>.MakeErrorResult("Invalid Credentials");
             }
 
-            return ServiceResult<UserResponse>.MakeErrorResult("User not found.");
+            return ServiceResult<UserWithPreferencesResponse>.MakeErrorResult("User not found.");
         }
         catch
         {
-            return ServiceResult<UserResponse>.MakeErrorResult("Error on validation process.");
+            return ServiceResult<UserWithPreferencesResponse>.MakeErrorResult("Error on validation process.");
         }
     }
 

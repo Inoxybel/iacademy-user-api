@@ -17,6 +17,9 @@ public class CompanyRequestValidator : AbstractValidator<CompanyRequest>
             .Must(DocumentValidator.IsValidCnpj).WithMessage("The Cnpj field is not a valid Cnpj.")
             .When(x => !string.IsNullOrWhiteSpace(x.Cnpj));
 
+        RuleFor(x => x.ConfirmPassword)
+            .Equal(x => x.Password).WithMessage("Password and Confirm Password do not match.");
+
         RuleFor(x => x.Groups)
             .ForEach(rule => rule.SetValidator(new CompanyGroupValidator()));
     }

@@ -49,6 +49,7 @@ namespace IAcademy_User_API
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IActivationCodeService, ActivationCodeService>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {

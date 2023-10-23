@@ -14,15 +14,18 @@ public class UserServiceTests
 {
     private Mock<IUserRepository> _userRepositoryMock;
     private Mock<ICompanyService> _companyServiceMock;
+    private Mock<IActivationCodeService> _activationCodeServiceMock;
     private UserService _userService;
 
     public UserServiceTests()
     {
         _userRepositoryMock = new();
         _companyServiceMock = new();
+        _activationCodeServiceMock = new();
         _userService = new UserService(
             _userRepositoryMock.Object,
-            _companyServiceMock.Object
+            _companyServiceMock.Object,
+            _activationCodeServiceMock.Object
         );
     }
 
@@ -124,7 +127,7 @@ public class UserServiceTests
             Password = "P@ssw0rd"
         };
 
-        var expectedUserResponse = new ServiceResult<UserResponse>
+        var expectedUserResponse = new ServiceResult<UserWithPreferencesResponse>
         {
             Success = true,
             Data = new()
@@ -132,7 +135,8 @@ public class UserServiceTests
                 Id = "12345",
                 Name = "Test User",
                 Email = "test@example.com",
-                CompanyRef = "ABC"
+                CompanyRef = "ABC",
+                GenrePreferences = new()
             }
         };
 
@@ -218,7 +222,14 @@ public class UserServiceTests
             {
                 new CompanyGroup
                 {
-                    UsersDocument = new()
+                    Users = new()
+                    {
+                        new()
+                        {
+                            Name = "Name",
+                            Document = "22222222222"
+                        }
+                    }
                 }
             }
         };
@@ -269,7 +280,6 @@ public class UserServiceTests
     {
         var userRequest = new UserUpdateRequest
         {
-            Cpf = "11111111111",
             CompanyRef = "67601037000146"
         };
 
@@ -285,7 +295,14 @@ public class UserServiceTests
             {
                 new CompanyGroup
                 {
-                    UsersDocument = new()
+                    Users = new()
+                    {
+                        new()
+                        {
+                            Name = "Name",
+                            Document = "22222222222"
+                        }
+                    }
                 }
             }
         };

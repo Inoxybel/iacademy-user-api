@@ -29,7 +29,7 @@ public class CompanyService : ICompanyService
     {
         if (DocumentValidator.IsValidCnpj(request.Cnpj))
         {
-            var repositoryResult = await _companyRepository.GetByRef(request.Cnpj);
+            var repositoryResult = await _companyRepository.GetByRef(request.Cnpj, cancellationToken);
 
             if (repositoryResult is not null)
                 return ServiceResult<string>.MakeErrorResult("Company already exists.");
@@ -51,5 +51,15 @@ public class CompanyService : ICompanyService
             return await _companyRepository.Update(companyId, request, cancellationToken);
 
         return false;
+    }
+
+    public async Task<ServiceResult<CompanyResponse>> ValidatePassword(CompanyLoginRequest sendedInfo, CancellationToken cancellationToken = default)
+    {
+        return await _companyRepository.ValidatePassword(sendedInfo, cancellationToken);
+    }
+
+    public async Task<ServiceResult<bool>> UpdatePassword(string userId, CompanyUpdatePasswordRequest sendedInfo, CancellationToken cancellationToken = default)
+    {
+        return await _companyRepository.UpdatePassword(userId, sendedInfo, cancellationToken);
     }
 }
