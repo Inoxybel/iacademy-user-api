@@ -1,7 +1,5 @@
-using CrossCutting.Enums;
 using Domain.Constants;
 using Domain.DTO;
-using Domain.Entities;
 using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -214,7 +212,7 @@ namespace IAcademyUserAPI.Controllers.v1
                         new Claim("OwnerId", validateResult.Data.Id),
                         new Claim("Document", validateResult.Data.Cpf),
                         new Claim("CompanyRef", validateResult.Data.CompanyRef),
-                        new Claim("TextGenres", "[" + string.Join(",", validateResult.Data.GenrePreferences.Select(g => g.Genre.ToString())) + "]")
+                        new Claim("TextGenres", "[" + string.Join(",", validateResult.Data.GenrePreferences.Select(g => $"\"{g.Genre}\"")) + "]")
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(expirationTimeInMinutes),
                     SigningCredentials = new SigningCredentials(

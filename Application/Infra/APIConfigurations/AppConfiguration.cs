@@ -78,6 +78,8 @@ public static class AppConfiguration
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ICompanyRepository, CompanyRepository>();
         services.AddScoped<IActivationCodeRepository, ActivationCodeRepository>();
+        services.AddScoped<IPlanRepository, PlanRepository>();
+        services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
         services.AddSingleton<DbContext>();
         return services;

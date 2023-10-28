@@ -4,6 +4,9 @@ public static class DocumentValidator
 {
     public static bool IsValidCnpj(string Cnpj)
     {
+        if(string.IsNullOrEmpty(Cnpj)) 
+            return false;
+
         if (!Cnpj.All(char.IsDigit))
             return false;
 
@@ -42,6 +45,9 @@ public static class DocumentValidator
 
     public static bool IsValidCpf(string Cpf)
     {
+        if(string.IsNullOrEmpty(Cpf))
+            return false;
+        
         if (!Cpf.All(char.IsDigit))
             return false;
 

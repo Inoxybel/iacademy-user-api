@@ -47,13 +47,15 @@ public class UserRequestValidator : AbstractValidator<UserRequest>
             .Matches(@"^\d+$").WithMessage("The CellphoneNumberWithDDD field can only contain digits.");
 
         RuleFor(x => x.CellphoneNumberWithDDD)
-            .Must(phone => phone.Length == 11 && phone[2] == '9').WithMessage("The third digit of CellphoneNumberWithDDD must be 9.");
+            .Must(phone => phone.Length == 11 && phone[2] == '9')
+            .WithMessage("The third digit of CellphoneNumberWithDDD must be 9.");
 
         RuleFor(x => x.CellphoneNumberWithDDD)
-            .Must(phone => ValidDDDs.Contains(phone[..2])).WithMessage("The first two digits of CellphoneNumberWithDDD must be a valid DDD from Brazil.");
+            .Must(phone => ValidDDDs.Contains(phone[..2]))
+            .WithMessage("The first two digits of CellphoneNumberWithDDD must be a valid DDD from Brazil.");
     }
 
-    private static readonly HashSet<string> ValidDDDs = new HashSet<string>
+    private static readonly HashSet<string> ValidDDDs = new()
     {
         "11", "12", "13", "14", "15", "16", "17", "18", "19",
         "21", "22", "24", "27", "28", "31", "32", "33", "34",
