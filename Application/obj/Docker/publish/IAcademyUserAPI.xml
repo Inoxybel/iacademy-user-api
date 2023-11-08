@@ -46,6 +46,39 @@
             <param name="cancellationToken">Token de cancelamento</param>
             <returns></returns>
         </member>
+        <member name="M:IAcademyUserAPI.Controllers.v1.FeedbackController.Save(Domain.DTO.CompanyRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cadastrar uma nova empresa
+            </summary>
+            <param name="companyRequest">Objeto com dados da empresa</param>
+            <param name="cancellationToken">Token para cancelamento</param>
+            <returns>Identificacao da empresa criada, persistida no banco de dados</returns>
+        </member>
+        <member name="M:IAcademyUserAPI.Controllers.v1.PlanController.Get(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Recupera plano
+            </summary>
+            <param name="planId">Id do plano</param>
+            <param name="cancellationToken">Token para cancelamento</param>
+            <returns>Objeto com dados da empresa</returns>
+        </member>
+        <member name="M:IAcademyUserAPI.Controllers.v1.PlanController.Save(Domain.DTO.CreatePlanRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cria novo plano
+            </summary>
+            <param name="request">Objeto de criação do plano</param>
+            <param name="cancellationToken">Token para cancelamento</param>
+            <returns>Id do plano criado</returns>
+        </member>
+        <member name="M:IAcademyUserAPI.Controllers.v1.PlanController.Update(System.String,Domain.DTO.UpdatePlanRequest,System.Threading.CancellationToken)">
+            <summary>
+            Atualiza plano
+            </summary>
+            <param name="planId">Id do plano</param>
+            <param name="request">Objeto de atualização</param>
+            <param name="cancellationToken">Token para cancelamento</param>
+            <returns>Objeto com dados da empresa</returns>
+        </member>
         <member name="M:IAcademyUserAPI.Controllers.v1.UserController.Get(System.String,System.Threading.CancellationToken)">
             <summary>
             Recuperar dados de um usuario pelo Id

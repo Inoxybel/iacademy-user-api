@@ -11,7 +11,7 @@ public class CompanyLoginRequestValidator : AbstractValidator<CompanyLoginReques
         RuleFor(x => x.Cnpj)
             .Matches(@"^\d+$").WithMessage("The Cnpj field can only contain digits.")
             .Must(DocumentValidator.IsValidCnpj).WithMessage("The Cnpj field is not a valid Cnpj.")
-            .When(x => !string.IsNullOrWhiteSpace(x.Cnpj));
+            .When(x => !MasterOwner.Validate(x.Cnpj));
     }
 }
 
