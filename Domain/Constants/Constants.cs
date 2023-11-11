@@ -2,5 +2,5 @@
 
 public static class Constants
 {
-    public static string MasterCNPJ = "iacademy";
+    public static string MasterCnpj = "iacademy";
 }

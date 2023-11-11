@@ -80,3 +80,8 @@ C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\o
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Release\net6.0\IAcademyUserAPI.pdb
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Release\net6.0\IAcademyUserAPI.genruntimeconfig.cache
 C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Release\net6.0\ref\IAcademyUserAPI.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Release\net6.0\IAcademyUserAPI.xml
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Release\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\obj\Release\net6.0\IAcademyUserAPI.xml
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Release\net6.0\CrossCutting.dll
+C:\Users\thdev\Documentos\Fiap\CHALLENGE\Sprint-4\IAcademy-UserAPI\Application\bin\Release\net6.0\CrossCutting.pdb

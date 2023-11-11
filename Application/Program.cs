@@ -22,6 +22,7 @@ namespace IAcademy_User_API
                 builder.Configuration.AddAzureAppConfiguration(options =>
                 {
                     options.Connect(Environment.GetEnvironmentVariable("AppConfigConnectionString"))
+                        .TrimKeyPrefix("IAcademy:")
                         .Select("IAcademy:UserManager:Mongo:*")
                         .Select("IAcademy:ExternalServices:*")
                         .Select("IAcademy:JwtSettings:*")
@@ -47,6 +48,10 @@ namespace IAcademy_User_API
             MongoConfiguration.RegisterConfigurations();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IActivationCodeService, ActivationCodeService>();
+            services.AddScoped<IPlanService, PlanService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -84,9 +89,20 @@ namespace IAcademy_User_API
                 .AddRepositories()
                 .AddHealthChecks()
                 .AddMongoDb(
-                    mongodbConnectionString: configuration["IAcademy:MongoDB:ConnectionString"] ?? "ConnectionString not founded", 
+                    mongodbConnectionString: configuration["MongoDB:ConnectionString"] ?? "ConnectionString not founded", 
                     name: "health-check-mongodb"
                 );
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
         }
 
         public static void ConfigureApp(WebApplication app, IConfiguration configuration)
@@ -103,11 +119,7 @@ namespace IAcademy_User_API
                 c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
             });
 
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
-                await next.Invoke();
-            });
+            app.UseCors();
 
             app.UseAuthorization();
             app.UseAuthentication();

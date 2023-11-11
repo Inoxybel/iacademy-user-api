@@ -213,8 +213,14 @@
           }
         }
       },
+      "CrossCutting/1.0.0": {
+        "runtime": {
+          "CrossCutting.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "dependencies": {
+          "CrossCutting": "1.0.0",
           "FluentValidation": "11.7.1"
         },
         "runtime": {
@@ -389,6 +395,11 @@
       "sha512": "sha512-jPao/LdUNLUz8rn3H1D8W7wQbZsRZM0iayvWI4xGejJg3XJHT56gcmYdgmCGPdJF1UEBqUjucCRrFB+4HbJsbw==",
       "path": "zstdsharp.port/0.6.2",
       "hashPath": "zstdsharp.port.0.6.2.nupkg.sha512"
+    },
+    "CrossCutting/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Domain/1.0.0": {
       "type": "project",

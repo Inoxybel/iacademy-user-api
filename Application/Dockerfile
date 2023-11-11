@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Application/IAcademyUserAPI.csproj", "Application/"]
+COPY ["CrossCutting/CrossCutting.csproj", "CrossCutting/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
 COPY ["Infra/Infra.csproj", "Infra/"]
 COPY ["Services/Services.csproj", "Services/"]
