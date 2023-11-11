@@ -7400,11 +7400,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Tests\\Tests.csproj",
+      "projectUniqueName": "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Tests\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Tests\\Tests.csproj",
+      "projectPath": "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Tests\\Tests.csproj",
       "packagesPath": "C:\\Users\\thdev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Tests\\obj\\",
+      "outputPath": "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7425,11 +7425,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Domain\\Domain.csproj"
+            "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Services\\Services.csproj"
+            "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Services\\Services.csproj"
             }
           }
         }
@@ -7489,7 +7489,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

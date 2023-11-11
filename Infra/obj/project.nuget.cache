@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WRPLS+cjdyzv34DvgM0ywxjgjQMYmk4iaL1vw4hO59s+p0j1UUa0uVcGjPMrOu70VGVGaZjjtObus+8LHgKzVw==",
+  "dgSpecHash": "Wh1ZceUmkyHDynT0uYc7MvVnoe83vCU8h8aCIIaMphs4lzfKAZQ9mRdFZCx/BAW4ynpr0VjN96lkefgucjBXrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thdev\\Documentos\\Fiap\\CHALLENGE\\Sprint-4\\IAcademy-UserAPI\\Infra\\Infra.csproj",
+  "projectFilePath": "C:\\Users\\thdev\\OneDrive\\Documentos\\IAcademy\\UserManager\\iacademy-user-api\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thdev\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\thdev\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

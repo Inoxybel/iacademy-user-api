@@ -6,7 +6,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local",
-        "AppConfigConnectionString": "Endpoint=https://iacademy-configurations.azconfig.io;Id=U8bT;Secret=UdWDslxutkNygsS/uCN25Ivrz8om5H16Jx6qFWDi16s="
+        "AppConfigConnectionString": "Endpoint=https://iacademy-appconfiguration.azconfig.io;Id=N/7n;Secret=Vy2WDDQ0b6XgaNIvQ8OQxp/Na+HpH0wo3TaNz/7flG0="
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7013;http://localhost:5028"

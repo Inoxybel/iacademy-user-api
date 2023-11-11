@@ -30,7 +30,7 @@ namespace IAcademyUserAPI.Controllers.v1
         }
 
         /// <summary>
-        /// Recupera empresa
+        /// Recupera empresa pelo Id
         /// </summary>
         /// <param name="companyId">Identificacao da empresa (GUID de 36 caracteres)</param>
         /// <param name="cancellationToken">Token para cancelamento</param>
