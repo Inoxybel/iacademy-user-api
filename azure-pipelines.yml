@@ -14,7 +14,7 @@ variables:
   imageRepository: 'iacademyuserapi'
   containerRegistry: 'iacademyapiregistry.azurecr.io'
   dockerfilePath: 'Application/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: 'latest'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
