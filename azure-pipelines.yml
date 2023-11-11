@@ -39,7 +39,7 @@ stages:
           $(tag)
     - task: AzureCLI@2
       inputs:
-        azureSubscription: 'Azure for Students (981e20b3-6573-4c66-8577-2154f9361a71)'
+        azureSubscription: 'Azure Subscription'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
