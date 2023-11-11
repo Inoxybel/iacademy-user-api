@@ -37,3 +37,11 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: '981e20b3-6573-4c66-8577-2154f9361a71'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az webapp restart --name iacademy-user-v1-api --resource-group iacademyapiresourcegroup
+
