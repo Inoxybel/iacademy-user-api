@@ -1,0 +1,17 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(developer, "Desenvolvedor")
+Container(webApp, "Azure Web App", "Azure", "Serviço de hospedagem na nuvem para aplicativos web.")
+Container(registry, "Azure Container Registry", "Azure", "Serviço do Azure para gerenciamento de imagens Docker.")
+Container(repo, "Repositório Git", "Azure DevOps", "Repositório de código fonte no Azure DevOps.")
+Container(azurePipeline, "Pipeline Azure DevOps", "Azure DevOps", "Pipeline de CI/CD para construir e implantar o aplicativo.")
+
+Rel(developer, repo, "Faz commits de código e inicia a pipeline", "down")
+Rel_U(repo, azurePipeline, "Dispara", "down")
+Rel_R(azurePipeline, registry, "Constrói a imagem Docker e envia", "right")
+Rel_D(azurePipeline, webApp, "Reinicia o aplicativo", "down")
+
+@enduml
