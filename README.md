@@ -83,7 +83,28 @@ Esta API é um módulo do conjunto de módulos da IAcademy que tem como objetivo
 
 ```
 {
-  "companyDetails": "..."
+  "name": "Another Company Name",
+  "cnpj": "12345678901234",
+  "password": "P@ssw0rd",
+  "confirmPassword": "P@ssw0rd",
+  "groups": [
+    {
+      "groupName": "Sector One",
+      "users": [
+        {
+          "name": "Mr. Smith",
+          "document": "12345678901"
+        }
+      ],
+      "authorizedTrainingIds": [
+        "8629c8cf-d0a6-4a8a-8893-929c751b6a8a",
+        "42fcaed1-fb7a-4e57-9e9d-87c48a2e25d2",
+        "415796fd-0420-4835-aabd-68731f20e2b3",
+        "c4ac6068-68f0-471a-97f6-33755e7cb7d0",
+        "7befa9ff-1ed7-473a-bd3d-8a545c0ca3f6"
+      ]
+    }
+  ]
 }
 ```
 
@@ -99,7 +120,8 @@ Esta API é um módulo do conjunto de módulos da IAcademy que tem como objetivo
 
 ```
 {
-  "loginCredentials": "..."
+  "cnpj": "12345678901234",
+  "password": "P@ssw0rd"
 }
 ```
 
@@ -116,7 +138,10 @@ Esta API é um módulo do conjunto de módulos da IAcademy que tem como objetivo
 
 ```
 {
-  "passwordDetails": "..."
+  "cnpj": "12345678901234",
+  "oldPassword": "P@ssw0rd",
+  "newPassword": "pa5$Word",
+  "confirmPassword": "pa5$Word"
 }
 ```
 
@@ -136,7 +161,9 @@ Esta API é um módulo do conjunto de módulos da IAcademy que tem como objetivo
 
 ```
 {
-  "feedbackDetails": "..."
+  "name": "Thiago Matos",
+  "email": "thiago@iacademy.tech",
+  "comment": "Texto de feedback que deseja fornecer"
 }
 ```
 
@@ -162,7 +189,11 @@ Esta API é um módulo do conjunto de módulos da IAcademy que tem como objetivo
 
 ```
 {
-  "planUpdateDetails": "..."
+  "id": "ab989040-f92c-4de6-becb-7ba141d4df17",
+  "name": "Plano Gold",
+  "type": "Individual",
+  "value": 30,
+  "accessLimit": 100
 }
 ```
 
@@ -178,7 +209,10 @@ Esta API é um módulo do conjunto de módulos da IAcademy que tem como objetivo
 
 ```
 {
-  "planCreationDetails": "..."
+  "name": "Plano Basic",
+  "type": "Individual",
+  "value": 50,
+  "accessLimit": 10
 }
 ```
 
