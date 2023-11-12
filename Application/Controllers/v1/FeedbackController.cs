@@ -1,12 +1,7 @@
 using Domain.DTO;
 using Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Net.Mime;
-using System.Security.Claims;
-using System.Text;
 
 namespace IAcademyUserAPI.Controllers.v1
 {
@@ -16,39 +11,39 @@ namespace IAcademyUserAPI.Controllers.v1
     public class FeedbackController : ControllerBase
     {
         private readonly ILogger<CompanyController> _logger;
-        private readonly ICompanyService _companyService;
+        private readonly IFeedbackService _feedbackService;
 
         public FeedbackController(
             ILogger<CompanyController> logger,
-            ICompanyService companyService)
+            IFeedbackService feedbackService)
         {
             _logger = logger;
-            _companyService = companyService;
+            _feedbackService = feedbackService;
         }
 
         /// <summary>
-        /// Cadastrar uma nova empresa
+        /// Cadastrar novo feedback
         /// </summary>
-        /// <param name="companyRequest">Objeto com dados da empresa</param>
+        /// <param name="request">Objeto com dados do feedback</param>
         /// <param name="cancellationToken">Token para cancelamento</param>
-        /// <returns>Identificacao da empresa criada, persistida no banco de dados</returns>
+        /// <returns>Identificacao do feedback criado</returns>
         [HttpPost]
         [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         [Produces(MediaTypeNames.Application.Json)]
-        public async Task<IActionResult> Save([FromBody] CompanyRequest companyRequest, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Save([FromBody] FeedbackRequest request, CancellationToken cancellationToken = default)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var saveResult = await _companyService.Save(companyRequest, cancellationToken);
+                var feedbackId = await _feedbackService.Save(request, cancellationToken);
 
-                return saveResult.Success ? Created(string.Empty, saveResult.Data) : BadRequest(saveResult.ErrorMessage);
+                return !string.IsNullOrEmpty(feedbackId) ? Created(string.Empty, feedbackId) : BadRequest("Erro ao salvar feedback");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error saving company");
+                _logger.LogError(ex, "Error saving feedback");
                 return BadRequest();
             }
         }
