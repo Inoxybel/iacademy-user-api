@@ -34,7 +34,7 @@ namespace IAcademyUserAPI.Controllers.v1
         }
 
         /// <summary>
-        /// Recuperar dados de um usuario pela identificacao
+        /// Recuperar dados de um usuario pelo id
         /// </summary>
         /// <param name="userId">Id em forma de GUID (36 caracteres)</param>
         /// <param name="cancellationToken">Token de cancelamento</param>
